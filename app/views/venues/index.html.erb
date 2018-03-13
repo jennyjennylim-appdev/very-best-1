@@ -101,8 +101,11 @@
         <th>Neighborhood</th>
         <th>Actions</th>
       </tr>
-
+    
       <% @venues.each do |venue| %>
+      
+      <% bm = Bookmark.where(:venue => venue.id,:user_id => current_user.id) %>
+      <% if bm.first.present? %>
       <tr>
         <td><%= venue.name %></td>
         <td><%= venue.address %></td>
@@ -119,6 +122,7 @@
           <a href="/delete_venue/<%= venue.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
+      <% end %>
       <% end %>
     </table>
     <%= paginate @venues, theme: 'twitter-bootstrap-4' %>
