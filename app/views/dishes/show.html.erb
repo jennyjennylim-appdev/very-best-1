@@ -41,16 +41,16 @@
         </div>
       <% end %>
       
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
-      
       <li class="list-group-item">
         <form action="/create_bookmark" method="post">
           
-           <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
            
-           <input type="hidden" name="dish_id" value="<%= @dish.id %>">
+          <input type="hidden" name="dish_id" value="<%= @dish.id %>">
+          
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
            
-           <div class="form-group">
+          <div class="form-group">
             <label for="venue_id" class="control-label">
               Venue
             </label>
@@ -67,10 +67,10 @@
           </div>
 
           <button>
-          Create Bookmark
+            Create Bookmark
           </button>
         </form>
-        </li>
+      </li>
       </div>
     </div>
   </div>
