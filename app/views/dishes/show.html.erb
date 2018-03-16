@@ -39,6 +39,15 @@
       
       <ul class="list-group">
         <li class="list-group-item">
+        <% bm = Bookmark.where(:dish_id => @dish.id, :user_id => current_user.id) %>
+          <% if bm.first.present? %>
+            <a href="/venues/<%= bm.first.venue_id %>">
+              <%= Venue.find(bm.first.venue_id).name %>
+            </a>
+        </li>
+          <% else %>
+        
+        <li class="list-group-item">
           <form action="/create_bookmark" class="form-inline float-left" method="post">
             <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
             <input name="dish_id" type="hidden" value="<%= @dish.id %>">
@@ -56,7 +65,9 @@
             <%= time_ago_in_words(@dish.updated_at) %> ago
           </small>
         </li>
+        <% end %>
       </ul>
+      
         <div class="card-footer text-center">
           <a href="/dishes" class="btn btn-block btn-secondary">
             <i class="fa fa-chevron-left"></i>
